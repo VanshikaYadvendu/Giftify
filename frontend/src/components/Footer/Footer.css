@@ -7,7 +7,6 @@
     gap: 20px;
     padding: 20px 8vw;
     padding-top: 60px;
-    height: 50%;
     margin-top: 100px;
 }
 .footer-content{
@@ -42,4 +41,15 @@
     margin: 20px 0;
     background-color: gray;
     border: none;
+}
+
+@media (max-width:750px) {
+    .footer-content{
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+    }
+    .footer-copyright{
+        text-align: center;
+    }
 }
