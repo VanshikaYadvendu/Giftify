@@ -27,7 +27,7 @@ const StoreContextProvider = (props)=>{
             }
            
         }
-        return totalAmount
+        return totalAmount;
     }
 
 
