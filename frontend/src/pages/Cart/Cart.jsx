@@ -1,3 +1,4 @@
+
 import React from 'react'
 import './cart.css'
 import {useContext} from 'react'
@@ -56,7 +57,7 @@ const Cart = () => {
             </div>
             <div className="cart-total-details">
               <b>Total</b>
-              <b>{getTotalCartAmount()}</b>
+              <b>{getTotalCartAmount()+2}</b>
             </div>
             
           </div>
