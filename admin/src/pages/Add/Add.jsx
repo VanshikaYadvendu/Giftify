@@ -1,4 +1,4 @@
-import React, { useState,  } from 'react'
+import React, { useEffect, useState,  } from 'react'
 import './Add.css'
 import { assets } from '../../assets/assets'
 import axios from 'axios'
@@ -46,6 +46,11 @@ const Add=({url})=> {
 
   }
   
+
+  // useEffect(()=>{
+  //   console.log(data);
+    
+  // },[data])
   return (
     <div>
       <div className="add">
