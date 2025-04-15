@@ -13,8 +13,8 @@ const FoodDisplay = ({ category }) => {
           if(category==='All' ||category===item.category){
             return (
               <FoodItem
-                key={item.id} // ✅ use unique key
-                id={item.id} // ✅ make sure this is defined
+                key={item._id} // ✅ use unique key
+                _id={item._id} // ✅ make sure this is defined
                 name={item.name}
                 description={item.description}
                 price={item.price}
