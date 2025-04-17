@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './order.css'
 import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
@@ -24,6 +24,12 @@ const [data,setData] = useState({
     setData(data=>({...data,[name]:value}))
 
   }
+
+  // useEffect(()=>{
+  //   console.log(data);
+    
+  // },[data])
+ 
     const placeOrder = async(event)=>{
       event.preventDefault();
       let orderItems = [];
@@ -34,6 +40,8 @@ const [data,setData] = useState({
           orderItems.push(itemInfo)
         }
       })
+      //console.log(orderItems);
+      
       let orderData ={
         address:data,
         items:orderItems,

@@ -11,13 +11,13 @@ const placeOrder = async(req,res)=>{
 
     try{
         const newOrder = new orderModel({
-            userId:req.body.userId,
+            userId:req.userId,
             items:req.body.items,
             amount:req.body.amount,
             address:req.body.address
         })
         await newOrder.save();
-        await userModel.findByIdAndUpdate(req.body.userId,{cartData:{}});
+        await userModel.findByIdAndUpdate(req.userId,{cartData:{}});
 
         const line_items = req.body.items.map((item)=>({
             price_data:{
@@ -55,4 +55,37 @@ const placeOrder = async(req,res)=>{
   
 }
 
-export {placeOrder}
+
+
+const verifyOrder = async(req,res)=>{
+    const{orderId,success} = req.body;
+    try {
+        if(success=="true"){
+            await orderModel.findByIdAndUpdate(orderId,{payment:true});
+            res.json({success:true,message:"Paid"})
+        }
+        else{
+            await orderModel.findByIdAndDelete(orderId);
+            res.json({success:false,message:"Payment cancelled"})
+        }
+    } catch (error) {
+        console.log(error);
+        res.json({success:false,message:error.message});
+        
+    }
+}
+
+//user orders for frontned
+const userOrders = async (req,res)=>{
+    try {
+        const orders = await orderModel.find({userId:req.userId});
+
+        res.json({success:true,data:orders})
+    } catch (error) {
+        console.log(error);
+        res.json({success:false,message:error.message})
+        
+    }
+}
+
+export {placeOrder,verifyOrder,userOrders}
